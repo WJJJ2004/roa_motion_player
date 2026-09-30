@@ -1,0 +1,18 @@
+motion_player:
+  ros__parameters:
+    command_topic: /hardware_interface/command
+    wait_for_walk_initialized: false
+    walk_initialized_topic: /walk_initialized
+    idle_pose_file: motions/idle_pose.yaml
+    motion_catalog_file: config/motion_catalog.yaml
+    gain_profiles_file: config/gain_profiles.yaml
+    startup_delay: 5.0
+    interpolation_time: 1.0
+    publish_rate_hz: 300.0
+    max_command_velocity_rad_s: 15.0
+    command_step_tolerance_rad: 0.002
+    gamepad_enabled: true
+    device_path: ""
+    vendor_id: 1133       # 0x046D Logitech
+    product_id: 49689     # 0xC219
+    prefer_name_contains: Logitech

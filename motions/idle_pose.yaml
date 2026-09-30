@@ -1,0 +1,20 @@
+name: idle_pose
+sample_period: 0.0033333333333333335
+joints:
+- right_shoulder_pitch
+- right_shoulder_roll
+- right_arm_yaw
+- right_arm_pitch
+- left_shoulder_pitch
+- left_shoulder_roll
+- left_arm_yaw
+- left_arm_pitch
+positions:
+- - 0.13829947
+  - -0.027812
+  - 0.03663445
+  - 0.28483915
+  - -0.13829947
+  - 0.027812
+  - -0.03663445
+  - -0.28483915

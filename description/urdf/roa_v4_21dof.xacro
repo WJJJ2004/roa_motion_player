@@ -1,0 +1,749 @@
+<?xml version="1.0" ?>
+<robot name="roa_v4_21dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find roa_motion_player)/description/urdf/materials.xacro" />
+<xacro:include filename="$(find roa_motion_player)/description/urdf/roa_v4_21dof.trans" />
+<xacro:include filename="$(find roa_motion_player)/description/urdf/roa_v4_21dof.gazebo" />
+
+<!-- KDL requires the root link to have no inertia. Keep base_link as the
+     robot body frame and attach it to a massless root frame. -->
+<link name="base_footprint"/>
+<joint name="base_footprint_to_base_link" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+</joint>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="-7.163416177454016e-06 2.809900717835358e-06 -0.0782412023463746" rpy="0 0 0"/>
+    <mass value="3.70159"/>
+    <inertia ixx="0.011475" iyy="0.00674" izz="0.011258" ixy="0.0" iyz="-1e-06" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_hip_1">
+  <inertial>
+    <origin xyz="0.0005121134176557427 -0.05449331072961443 -0.027771520101012803" rpy="0 0 0"/>
+    <mass value="1.66507"/>
+    <inertia ixx="0.002772" iyy="0.001996" izz="0.002306" ixy="4e-06" iyz="-0.000214" ixz="2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 0.069232 0.095096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_hip_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 0.069232 0.095096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_hip_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_hip_1">
+  <inertial>
+    <origin xyz="0.0005121134310494496 0.054497797487398 -0.02776271434742536" rpy="0 0 0"/>
+    <mass value="1.66507"/>
+    <inertia ixx="0.002772" iyy="0.001995" izz="0.002307" ixy="-4e-06" iyz="0.000214" ixz="2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.069232 0.095096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_hip_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.069232 0.095096" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_hip_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_hip_thigh_1">
+  <inertial>
+    <origin xyz="-0.03335982358339286 -8.21199821306462e-05 -0.05614032259859167" rpy="0 0 0"/>
+    <mass value="0.321395200370441"/>
+    <inertia ixx="0.000667" iyy="0.001041" izz="0.000535" ixy="1e-06" iyz="1e-06" ixz="-3.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.03275 0.132493 0.12733" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_hip_thigh_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.03275 0.132493 0.12733" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_hip_thigh_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_hip_thigh_1">
+  <inertial>
+    <origin xyz="-0.033359823569079336 -8.148136162097752e-05 -0.056141181884098196" rpy="0 0 0"/>
+    <mass value="0.32139520037044045"/>
+    <inertia ixx="0.000667" iyy="0.001041" izz="0.000535" ixy="1e-06" iyz="1e-06" ixz="-3.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.03275 -0.132493 0.127329" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_hip_thigh_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.03275 -0.132493 0.127329" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_hip_thigh_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_thigh_1">
+  <inertial>
+    <origin xyz="-0.010661779968585536 0.0010122408638040814 -0.11984559303234843" rpy="0 0 0"/>
+    <mass value="3.658988"/>
+    <inertia ixx="0.024147" iyy="0.02533" izz="0.00496" ixy="2.6e-05" iyz="0.000185" ixz="-0.002515"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0025 -0.132493 0.237329" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_thigh_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0025 -0.132493 0.237329" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_thigh_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_thigh_1">
+  <inertial>
+    <origin xyz="-0.010661894115610124 -0.0008413371825257976 -0.11984473242194463" rpy="0 0 0"/>
+    <mass value="3.658988"/>
+    <inertia ixx="0.024148" iyy="0.02533" izz="0.004961" ixy="-3.2e-05" iyz="-0.000243" ixz="-0.002515"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0025 0.132493 0.23733" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_thigh_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0025 0.132493 0.23733" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_thigh_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_shin_1">
+  <inertial>
+    <origin xyz="0.017021859166089302 -0.032298257853799944 -0.1524222893938174" rpy="0 0 0"/>
+    <mass value="1.9365"/>
+    <inertia ixx="0.009952" iyy="0.010041" izz="0.001718" ixy="-9e-06" iyz="0.000435" ixz="-5.3e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0225 -0.163993 0.424829" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_shin_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0225 -0.163993 0.424829" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_shin_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_shin_1">
+  <inertial>
+    <origin xyz="0.017025964170585006 0.03229673179287712 -0.15232292660081742" rpy="0 0 0"/>
+    <mass value="1.9365"/>
+    <inertia ixx="0.009945" iyy="0.010033" izz="0.001718" ixy="9e-06" iyz="-0.000435" ixz="-6.1e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.022504 0.163991 0.42483" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_shin_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.022504 0.163991 0.42483" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_shin_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_ankle_1">
+  <inertial>
+    <origin xyz="0.00030298070446027527 -0.014499584864505796 9.412528256813602e-08" rpy="0 0 0"/>
+    <mass value="0.05161853272203562"/>
+    <inertia ixx="5e-06" iyy="9e-06" izz="1e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.006498 0.117193 0.72383" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_ankle_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.006498 0.117193 0.72383" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_ankle_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_ankle_1">
+  <inertial>
+    <origin xyz="0.00030487547740298306 0.014500554663313778 -7.741002557848375e-07" rpy="0 0 0"/>
+    <mass value="0.05161853272203551"/>
+    <inertia ixx="5e-06" iyy="9e-06" izz="1e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0065 -0.117193 0.723829" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_ankle_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0065 -0.117193 0.723829" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_ankle_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_foot_1">
+  <inertial>
+    <origin xyz="-0.009582401269887304 -4.0426365083279237e-07 -0.04129460873280966" rpy="0 0 0"/>
+    <mass value="0.31411093563645764"/>
+    <inertia ixx="0.000277" iyy="0.000563" izz="0.000783" ixy="0.0" iyz="-0.0" ixz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0132 0.131695 0.72383" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_foot_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0132 0.131695 0.72383" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_foot_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_foot_1">
+  <inertial>
+    <origin xyz="-0.00958250629304781 3.551598510842524e-07 -0.04129547695834768" rpy="0 0 0"/>
+    <mass value="0.3141109356364569"/>
+    <inertia ixx="0.000277" iyy="0.000563" izz="0.000783" ixy="0.0" iyz="-0.0" ixz="9e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0132 -0.131693 0.723829" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_foot_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0132 -0.131693 0.723829" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_foot_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_TPU_pad_1">
+  <inertial>
+    <origin xyz="-0.0594239452759319 0.03499959573633321 -0.004620143823127032" rpy="0 0 0"/>
+    <mass value="0.11647597504873854"/>
+    <inertia ixx="9.5e-05" iyy="0.000223" izz="0.000316" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0682 0.166695 0.77183" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_TPU_pad_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0682 0.166695 0.77183" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_TPU_pad_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_TPU_pad_1">
+  <inertial>
+    <origin xyz="-0.05942405029909288 -0.034999644840164434 -0.004621012048665607" rpy="0 0 0"/>
+    <mass value="0.11647597504873854"/>
+    <inertia ixx="9.5e-05" iyy="0.000223" izz="0.000316" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0682 -0.166693 0.771829" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_TPU_pad_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0682 -0.166693 0.771829" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_TPU_pad_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="torso_dummy_1">
+  <inertial>
+    <origin xyz="0.0063897 0.006826 0.219355" rpy="0 0 0"/>
+    <mass value="10.56"/>
+    <inertia
+        ixx="0.2640893"
+        iyy="0.2405354"
+        izz="0.0547235"
+        ixy="-0.00020524"
+        ixz="0.00070433"
+        iyz="-0.00233757"/>
+  </inertial>
+
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh
+          filename="package://roa_motion_player/meshes/torso_dummy_1.stl"
+          scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh
+          filename="package://roa_motion_player/meshes/torso_dummy_1.stl"
+          scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_shoulder_1">
+  <inertial>
+    <origin xyz="-0.0026111732343341966 0.05925170766995819 0.0016708632691230796" rpy="0 0 0"/>
+    <mass value="0.9861530183252302"/>
+    <inertia ixx="0.00121" iyy="0.000773" izz="0.00107" ixy="0.0" iyz="6.6e-05" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.005 -0.1325 -0.2995" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_shoulder_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.005 -0.1325 -0.2995" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_shoulder_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_upper_arm_1">
+  <inertial>
+    <origin xyz="-0.02849405549868654 1.591830606434419e-05 -0.0733249736998087" rpy="0 0 0"/>
+    <mass value="0.57489496004282"/>
+    <inertia ixx="0.000922" iyy="0.001115" izz="0.000397" ixy="-0.0" iyz="-0.0" ixz="4.6e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.031 -0.1995 -0.2995" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_upper_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.031 -0.1995 -0.2995" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_upper_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_lower_arm_1">
+  <inertial>
+    <origin xyz="-1.2688175113881144e-05 0.0011580057847586922 -0.06833500051346542" rpy="0 0 0"/>
+    <mass value="0.5116000430017309"/>
+    <inertia ixx="0.000568" iyy="0.000509" izz="0.000292" ixy="-0.0" iyz="-8e-06" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0035 -0.1995 -0.1775" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_lower_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0035 -0.1995 -0.1775" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_lower_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_shoulder_1">
+  <inertial>
+    <origin xyz="-0.0026111732343283033 -0.05925170766996374 0.0016708632691233571" rpy="0 0 0"/>
+    <mass value="0.9861530183251093"/>
+    <inertia ixx="0.00121" iyy="0.000773" izz="0.00107" ixy="-0.0" iyz="-6.6e-05" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.005 0.1325 -0.2995" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_shoulder_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.005 0.1325 -0.2995" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_shoulder_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_upper_arm_1">
+  <inertial>
+    <origin xyz="-0.02849405549867796 1.5918306037449037e-05 -0.07332497369980742" rpy="0 0 0"/>
+    <mass value="0.5748949600428195"/>
+    <inertia ixx="0.000922" iyy="0.001115" izz="0.000397" ixy="-0.0" iyz="-0.0" ixz="4.6e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.031 0.1995 -0.2995" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_upper_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.031 0.1995 -0.2995" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_upper_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_lower_arm_1">
+  <inertial>
+    <origin xyz="-1.268817505960685e-05 -0.001158010129289816 -0.06833500051339506" rpy="0 0 0"/>
+    <mass value="0.5116000430019619"/>
+    <inertia ixx="0.000568" iyy="0.000509" izz="0.000292" ixy="0.0" iyz="8e-06" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0035 0.1995 -0.1775" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_lower_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0035 0.1995 -0.1775" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_lower_arm_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_hand_1">
+  <inertial>
+    <origin xyz="2.3892082779645302e-08 0.023237660827567674 -0.15196250734817957" rpy="0 0 0"/>
+    <mass value="0.359"/>
+    <inertia ixx="0.008586" iyy="0.008528" izz="0.001327" ixy="-0.0" iyz="-0.001008" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0035 0.2295 -0.0975" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_hand_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0035 0.2295 -0.0975" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/right_hand_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_hand_1">
+  <inertial>
+    <origin xyz="-8.931090637182004e-08 -0.023237637063275002 -0.15196249875367882" rpy="0 0 0"/>
+    <mass value="0.359"/>
+    <inertia ixx="0.008586" iyy="0.008528" izz="0.001327" ixy="0.0" iyz="0.001008" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0035 -0.2295 -0.0975" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_hand_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0035 -0.2295 -0.0975" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/left_hand_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="imu_sensor_1">
+  <inertial>
+    <origin xyz="-1.92945889108216e-05 6.303846115872468e-05 0.0007480314385152481" rpy="0 0 0"/>
+    <mass value="0.0012071805701893612"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.0 -0.0505" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/imu_sensor_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.0 -0.0505" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://roa_motion_player/meshes/imu_sensor_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="right_hip_pitch" type="revolute">
+  <origin xyz="0.0 -0.069232 -0.095096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_hip_1"/>
+  <axis xyz="-0.0 -0.891007 -0.45399"/>
+  <limit upper="1.570796" lower="-1.570796" effort="120.0" velocity="20.9"/>
+</joint>
+
+<joint name="left_hip_pitch" type="revolute">
+  <origin xyz="0.0 0.069232 -0.095096" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_hip_1"/>
+  <axis xyz="0.0 0.891007 -0.45399"/>
+  <limit upper="1.570796" lower="-1.570796" effort="120.0" velocity="20.9"/>
+</joint>
+
+<joint name="right_hip_roll" type="revolute">
+  <origin xyz="0.03275 -0.063261 -0.032234" rpy="0 0 0"/>
+  <parent link="right_hip_1"/>
+  <child link="right_hip_thigh_1"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="0.150000" lower="-0.468000" effort="60.0" velocity="20.4"/>
+</joint>
+
+<joint name="left_hip_roll" type="revolute">
+  <origin xyz="0.03275 0.063261 -0.032233" rpy="0 0 0"/>
+  <parent link="left_hip_1"/>
+  <child link="left_hip_thigh_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+  <limit upper="0.468000" lower="-0.150000" effort="60.0" velocity="20.4"/>
+</joint>
+
+<joint name="left_hip_yaw" type="revolute">
+  <origin xyz="-0.03525 0.0 -0.11" rpy="0 0 0"/>
+  <parent link="left_hip_thigh_1"/>
+  <child link="left_thigh_1"/>
+  <axis xyz="-0.0 0.0 1.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="60.0" velocity="20.4"/>
+</joint>
+
+<joint name="right_hip_yaw" type="revolute">
+  <origin xyz="-0.03525 0.0 -0.11" rpy="0 0 0"/>
+  <parent link="right_hip_thigh_1"/>
+  <child link="right_thigh_1"/>
+  <axis xyz="-0.0 0.0 1.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="60.0" velocity="20.4"/>
+</joint>
+
+<joint name="left_knee_pitch" type="revolute">
+  <origin xyz="-0.02 0.0315 -0.1875" rpy="0 0 0"/>
+  <parent link="left_thigh_1"/>
+  <child link="left_shin_1"/>
+  <axis xyz="-0.0 1.0 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="120.0" velocity="20.9"/>
+</joint>
+
+<joint name="right_knee_pitch" type="revolute">
+  <origin xyz="-0.020004 -0.031498 -0.1875" rpy="0 0 0"/>
+  <parent link="right_thigh_1"/>
+  <child link="right_shin_1"/>
+  <axis xyz="-0.000135 -1.0 0.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="120.0" velocity="20.9"/>
+</joint>
+
+<joint name="right_ankle_pitch" type="revolute">
+  <origin xyz="0.016006 0.046798 -0.299" rpy="0 0 0"/>
+  <parent link="right_shin_1"/>
+  <child link="right_ankle_1"/>
+  <axis xyz="-0.000135 -1.0 0.0"/>
+  <limit upper="0.628319" lower="-0.689405" effort="36.0" velocity="50.3"/>
+</joint>
+
+<joint name="left_ankle_pitch" type="revolute">
+  <origin xyz="0.016 -0.0468 -0.299" rpy="0 0 0"/>
+  <parent link="left_shin_1"/>
+  <child link="left_ankle_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit upper="0.689405" lower="-0.628319" effort="36.0" velocity="50.3"/>
+</joint>
+
+<joint name="right_ankle_roll" type="revolute">
+  <origin xyz="0.019698 -0.014502 0.0" rpy="0 0 0"/>
+  <parent link="right_ankle_1"/>
+  <child link="right_foot_1"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="0.314159" lower="-0.305433" effort="36.0" velocity="50.3"/>
+</joint>
+
+<joint name="left_ankle_roll" type="revolute">
+  <origin xyz="0.0197 0.0145 0.0" rpy="0 0 0"/>
+  <parent link="left_ankle_1"/>
+  <child link="left_foot_1"/>
+  <axis xyz="1.0 -0.0 0.0"/>
+  <limit upper="0.305433" lower="-0.314159" effort="36.0" velocity="50.3"/>
+</joint>
+
+<joint name="rigid_right_TPU" type="fixed">
+  <origin xyz="0.055 -0.035 -0.048" rpy="0 0 0"/>
+  <parent link="right_foot_1"/>
+  <child link="right_TPU_pad_1"/>
+</joint>
+
+<joint name="rigid_left_TPU" type="fixed">
+  <origin xyz="0.055 0.035 -0.048" rpy="0 0 0"/>
+  <parent link="left_foot_1"/>
+  <child link="left_TPU_pad_1"/>
+</joint>
+
+<!-- Motor ID 9 -->
+<joint name="torso_yaw" type="revolute">
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="torso_dummy_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <limit upper="1.570796" lower="-1.570796" effort="36.0" velocity="50.0"/>
+</joint>
+
+<!-- Motor ID 0 -->
+<joint name="left_shoulder_pitch" type="revolute">
+  <origin xyz="0.005 0.1325 0.2995" rpy="0 0 0"/>
+  <parent link="torso_dummy_1"/>
+  <child link="left_shoulder_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="36.0" velocity="50.0"/>
+</joint>
+
+<!-- Motor ID 2 -->
+<joint name="left_shoulder_roll" type="revolute">
+  <origin xyz="0.026 0.067 0.0" rpy="0 0 0"/>
+  <parent link="left_shoulder_1"/>
+  <child link="left_upper_arm_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="36.0" velocity="50.0"/>
+</joint>
+
+<!-- Motor ID 4 -->
+<joint name="left_arm_yaw" type="revolute">
+  <origin xyz="-0.0275 0.0 -0.122" rpy="0 0 0"/>
+  <parent link="left_upper_arm_1"/>
+  <child link="left_lower_arm_1"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="14.0" velocity="33.0"/>
+</joint>
+
+<!-- Motor ID 1 -->
+<joint name="right_shoulder_pitch" type="revolute">
+  <origin xyz="0.005 -0.1325 0.2995" rpy="0 0 0"/>
+  <parent link="torso_dummy_1"/>
+  <child link="right_shoulder_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="36.0" velocity="50.0"/>
+</joint>
+
+<!-- Motor ID 3 -->
+<joint name="right_shoulder_roll" type="revolute">
+  <origin xyz="0.026 -0.067 0.0" rpy="0 0 0"/>
+  <parent link="right_shoulder_1"/>
+  <child link="right_upper_arm_1"/>
+  <axis xyz="1.0 0.0 0.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="36.0" velocity="50.0"/>
+</joint>
+
+<!-- Motor ID 5 -->
+<joint name="right_arm_yaw" type="revolute">
+  <origin xyz="-0.0275 0.0 -0.122" rpy="0 0 0"/>
+  <parent link="right_upper_arm_1"/>
+  <child link="right_lower_arm_1"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="14.0" velocity="33.0"/>
+</joint>
+
+<!-- Motor ID 7 -->
+<joint name="right_arm_pitch" type="revolute">
+  <origin xyz="0.0 -0.03 -0.08" rpy="0 0 0"/>
+  <parent link="right_lower_arm_1"/>
+  <child link="right_hand_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="14.0" velocity="33.0"/>
+</joint>
+
+<!-- Motor ID 6 -->
+<joint name="left_arm_pitch" type="revolute">
+  <origin xyz="0.0 0.03 -0.08" rpy="0 0 0"/>
+  <parent link="left_lower_arm_1"/>
+  <child link="left_hand_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="14.0" velocity="33.0"/>
+</joint>
+
+<joint name="imu" type="fixed">
+  <origin xyz="0.0 -0.0 0.0505" rpy="0 0 0"/>
+  <parent link="torso_dummy_1"/>
+  <child link="imu_sensor_1"/>
+</joint>
+
+</robot>

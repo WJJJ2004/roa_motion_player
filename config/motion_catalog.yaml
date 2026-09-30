@@ -1,0 +1,19 @@
+motions:
+  right_greeting:
+    file: motions/right_greeting.yaml
+    gain_profile: default
+  left_greeting:
+    file: motions/left_greeting.yaml
+    gain_profile: default
+  right_salute:
+    file: motions/right_salute.yaml
+    gain_profile: default
+  right_handshake:
+    file: motions/right_handshake.yaml
+    gain_profile: handshake_compliant
+
+buttons:
+  304: right_greeting   # A / BTN_SOUTH
+  307: left_greeting    # X / BTN_NORTH
+  308: right_salute     # Y / BTN_WEST
+  305: right_handshake  # B / BTN_EAST

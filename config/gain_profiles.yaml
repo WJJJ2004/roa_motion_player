@@ -1,0 +1,7 @@
+profiles:
+  default:
+    arm_scale: 1.0
+  handshake_compliant:
+    # The active right arm uses 50% of the existing arm kp/kd.
+    right_arm_scale: 0.5
+    left_arm_scale: 1.0
